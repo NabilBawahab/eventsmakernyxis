@@ -46,15 +46,17 @@ model Event {
   imageUrl String?
   authorId String
 
+  participants Participant[]
+
   author User @relation(fields: [authorId], references: [id])
 }
 
 model Participant {
-  id String @id @default()
+  id String @id @default(cuid())
   name String
   email String
   phoneNumber String?
   eventId String
 
-  events Event @relation(fields: [eventId], references: [id])
+  event Event @relation(fields: [eventId], references: [id])
 }
