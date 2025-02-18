@@ -13,3 +13,48 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
+model User {
+  id String @id @default(cuid())
+  name String
+  email String @unique
+  password String
+  role String
+  avatarUrl String
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  sessions Session[]
+  events Event[]
+}
+
+model Session {
+  id String @id @default(cuid())
+  userId String
+  expiresAt DateTime?
+  user User @relation(fields: [userId], references: [id])
+}
+
+model Event {
+  id String @id @default(cuid())
+  name String
+  description String
+  eventDate DateTime
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  isPublished Boolean @default(false)
+  isDeleted Boolean @default(false)
+  imageUrl String?
+  authorId String
+
+  author User @relation(fields: [authorId], references: [id])
+}
+
+model Participant {
+  id String @id @default()
+  name String
+  email String
+  phoneNumber String?
+  eventId String
+
+  events Event @relation(fields: [eventId], references: [id])
+}
