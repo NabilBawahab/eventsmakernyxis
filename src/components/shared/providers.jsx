@@ -1,7 +1,12 @@
 "use client";
 
-import { HeroUIProvider } from "@heroui/react";
-
+import { HeroUIProvider, ToastProvider } from "@heroui/react";
+import { color } from "framer-motion";
 export function Providers({ children }) {
-  return <HeroUIProvider>{children}</HeroUIProvider>;
+  return (
+    <HeroUIProvider>
+      <ToastProvider />
+      {children}
+    </HeroUIProvider>
+  );
 }
