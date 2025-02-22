@@ -10,7 +10,7 @@ export default function Page() {
 
   return (
     <main className="space-y-6">
-      <section className="space-y-2">
+      <section className="space-y-2 text-center">
         <h3 className="font-bold text-lg">Register</h3>
         <p>Create an account to continue</p>
       </section>
