@@ -4,9 +4,16 @@ import { Button, Input } from "@heroui/react";
 import Link from "next/link";
 import { useActionState } from "react";
 import { registerAction } from "./action";
+import { redirect } from "next/navigation";
 
 export default function Page() {
   const [state, formAction, pending] = useActionState(registerAction, null);
+
+  if (state?.success === true) {
+    setTimeout(() => {
+      redirect("/login");
+    }, 1000);
+  }
 
   return (
     <main className="space-y-6">
