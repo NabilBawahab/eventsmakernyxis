@@ -4,6 +4,7 @@ import { Button, Input, addToast } from "@heroui/react";
 import Link from "next/link";
 import { useActionState, useEffect } from "react";
 import { loginAction } from "./action";
+import { redirect } from "next/navigation";
 
 export default function Page() {
   const [state, formAction, pending] = useActionState(loginAction, null);
@@ -16,6 +17,9 @@ export default function Page() {
         color: "success",
         radius: "sm",
       });
+      setTimeout(() => {
+        redirect("/dashboard");
+      }, 1000);
     }
   }, [state?.success]);
   return (
